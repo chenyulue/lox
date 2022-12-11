@@ -1,0 +1,10 @@
+# Xmake cache
+clox/.xmake/
+clox/build/
+
+# MacOS Cache
+clox/.DS_Store
+
+com/craftinginterpreters/lox/*.class
+
+
