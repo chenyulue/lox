@@ -2,32 +2,38 @@
 #include <stdlib.h>
 
 #include "lox.h"
+#include "token.h"
+#include "scanner.h"
 
 int main(int argc, char** argv)
 {
+    int has_error = 0;
+
     if (argc > 2)
     {
         fprintf(stderr, "Usage: clox [script]\n");
         exit(1);
     } else if (argc == 2)
     {
-        run_file(argv[1]);
+        run_file(argv[1], &has_error);
     } else
     {
-        run_prompt();
+        run_prompt(&has_error);
     }
 
     return EXIT_SUCCESS;
 }
 
-static void run_file(const char *path)
+static void run_file(const char *path, int *has_error)
 {
     char *source = read_all_content(path);
-    run(source);
+    run(source, has_error);
     free(source);
+
+    if (*has_error) exit(1);
 }
 
-static void run_prompt(void)
+static void run_prompt(int *has_error)
 {
     while (1) {
         printf("> ");
@@ -35,20 +41,35 @@ static void run_prompt(void)
         if (line == NULL) break;
         run(line);
         free(line);
+
+        *has_error = 0;
     }
 }
 
 static void run(char *source)
 {
-    scanner_t scanner = new_scanner(source);
-    token_list_t tokens = scan_tokens(scanner);
+    scanner_t *scanner = new_scanner(source);
+    token_list_t *tokens = scan_tokens(scanner);
 
     // For now, just print the tokens
-    token_t token = tokens.head;
+    token_t *token = tokens->head;
     while (token != NULL)
     {
         print_token(token);
     }
+    scanner_del(scanner);
+    token_list_del(tokens);
+}
+
+static void error(int line, const char *message, int *has_error)
+{
+    report(line, "", message, has_error);
+}
+
+static void report(int line, const char *where, const char *message, int *has_error)
+{
+    fprintf(stderr, "[line %d] Error %s: %s\n", line, where, message);
+    *has_error = 1;
 }
 
 static char *read_line(void)
