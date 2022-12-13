@@ -10,6 +10,7 @@ typedef struct {
     char *source;
     int source_length;
     token_list_t *tokens;
+    token_type keywords[16];
 } scanner_t;
 
 #endif

@@ -17,10 +17,31 @@ token_t *new_token(token_type type, const char *lexeme, void *literal, int line)
     a_token->lexeme = malloc(strlen(lexeme) + 1);
     strcpy(a_token->lexeme, lexeme);
 
-    a_token->literal = literal;
+    switch (type)
+    {
+        case NUMBER:
+            a_token->literal = malloc(sizeof(double));
+            memcpy(a_token->literal, literal, sizeof(double));
+            break;
+        case STRING:
+            a_token->literal = malloc(strlen((char*)literal) + 1);
+            strcpy(a_token->literal, (const char*)literal);
+            break;
+        default:
+            a_token->literal = literal;
+            break;
+    }
+
     a_token->line = line;
 
     return a_token;
+}
+
+void token_del(token_t *token)
+{
+    free(token->lexeme);
+    free(token->literal);
+    free(token);
 }
 
 void print_token(token_t *token)
@@ -62,12 +83,30 @@ void token_list_add(token_list_t *tokens, token_node_t *token)
     tokens->size++;
 }
 
+void token_list_del(token_list_t *tokens)
+{
+    token_node_t *current = tokens->head;
+    while (current)
+    {
+        token_node_t *next = current->next;
+        token_node_del(current);
+        current = next;
+    }
+    free(tokens);
+}
+
 token_node_t *new_token_node(token_type type, char *lexeme, void *literal, int line)
 {
     token_node_t *a_new_token_node = malloc(sizeof(token_node_t));
     a_new_token_node->token = new_token(type, lexeme, literal, line);
     a_new_token_node->next = NULL;
     return a_new_token_node; 
+}
+
+void token_node_del(token_node_t *token_node)
+{
+    token_del(token_node->token);
+    free(token_node);
 }
 
 char *token_name(token_type type)

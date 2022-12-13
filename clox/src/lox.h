@@ -8,7 +8,7 @@
         if (!(cond))                      \
         {                                 \
             fprintf(stderr, __VA_ARGS__); \
-            return 1;                    \
+            return NULL;                  \
         }                                 \
     }                                     \
     while (0)
