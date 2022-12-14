@@ -13,7 +13,10 @@ static token_type keywords_get(char *key);
 scanner_t *new_scanner(char *source)
 {
     scanner_t *a_scanner = malloc(sizeof(scanner_t));
-    a_scanner->source = source;
+
+    a_scanner->source = malloc(strlen(source) + 1);
+    strcpy(a_scanner->source, source);
+
     token_list_t *tokens = new_token_list();
     a_scanner->tokens = tokens;
 
