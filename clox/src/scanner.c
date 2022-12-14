@@ -4,10 +4,11 @@
 
 #include "scanner.h"
 #include "token.h"
+#include "lox.h"
 
 #define STR_EQ(X, Y) (strcmp((X), (Y)) == 0)
 
-extern int has_error;
+static token_type keywords_get(char *key);
 
 scanner_t *new_scanner(char *source)
 {
@@ -18,7 +19,7 @@ scanner_t *new_scanner(char *source)
 
     a_scanner->start = 0;
     a_scanner->current = 0;
-    a_scanner->line = 0;
+    a_scanner->line = 1;
 
     a_scanner->source_length = strlen(source);
 
@@ -32,7 +33,7 @@ void scanner_del(scanner_t *scanner)
     free(scanner);
 }
 
-scanner_t *scan_tokens(scanner_t *scanner)
+token_list_t *scan_tokens(scanner_t *scanner)
 {
     while (!is_at_end(scanner))
     {
@@ -43,7 +44,7 @@ scanner_t *scan_tokens(scanner_t *scanner)
     token_node_t *a_new_token_node = new_token_node(END_OF_FILE, "", NULL, scanner->line);
     token_list_add(scanner->tokens, a_new_token_node);
 
-    return scanner;
+    return scanner->tokens;
 }
 
 void scan_token(scanner_t *scanner)
@@ -195,12 +196,12 @@ char advance(scanner_t *scanner)
 
 void add_token(scanner_t *scanner, token_type type,  void *literal)
 {
-    int lexeme_length = scanner->current - scanner->start;
-    char *text = malloc(sizeof(char) * (lexeme_length + 1));
-    strncpy(text, scanner->source + scanner->start, lexeme_length);
+    char *text = substring(scanner->source, scanner->start, scanner->current);
 
     token_node_t *a_token = new_token_node(type, text, literal, scanner->line);
     token_list_add(scanner->tokens, a_token);
+
+    free(text);
 }
 
 char *substring(char *source, int start, int end)
@@ -208,6 +209,7 @@ char *substring(char *source, int start, int end)
     int string_length = end - start;
     char *value = malloc(sizeof(char) * (string_length + 1));
     strncpy(value, source + start, string_length);
+    value[string_length] = '\0';
     return value;
 }
 

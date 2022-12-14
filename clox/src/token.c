@@ -58,6 +58,7 @@ void print_token(token_t *token)
         printf("%s %s null", token_name(token->type), token->lexeme);
         break;
     }
+    printf("\n");
 }
 
 token_list_t *new_token_list(void)

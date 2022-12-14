@@ -33,7 +33,7 @@ void run_file(const char *path)
     if (has_error) exit(1);
 }
 
-void run_prompt()
+void run_prompt(void)
 {
     while (1) {
         printf("> ");
@@ -52,10 +52,11 @@ void run(char *source)
     token_list_t *tokens = scan_tokens(scanner);
 
     // For now, just print the tokens
-    token_t *token = tokens->head;
-    while (token != NULL)
+    token_node_t *token_node = tokens->head;
+    while (token_node != NULL)
     {
-        print_token(token);
+        print_token(token_node->token);
+        token_node = token_node->next;
     }
     scanner_del(scanner);
     /* Scanner_del also deletes the token_list in the scanner_t, which is returned
