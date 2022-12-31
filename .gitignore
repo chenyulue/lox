@@ -6,5 +6,6 @@ clox/build/
 clox/.DS_Store
 
 com/craftinginterpreters/lox/*.class
+com/craftinginterpreters/tool/*.class
 
 

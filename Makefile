@@ -7,5 +7,8 @@ com/craftinginterpreters/tool/GenerateAst.class: com/craftinginterpreters/tool/G
 run: com/craftinginterpreters/lox/Lox.class
 	java com.craftinginterpreters.lox.Lox
 
-com/craftinginterpreters/lox/Lox.class: com/craftinginterpreters/lox/Lox.java com/craftinginterpreters/lox/Interpreter.java com/craftinginterpreters/lox/Parser.java
-	javac $<
+com/craftinginterpreters/lox/Lox.class: com/craftinginterpreters/lox/*.java
+	javac com/craftinginterpreters/lox/Lox.java
+
+clean:
+	rm com/craftinginterpreters/lox/*.class
