@@ -1,0 +1,41 @@
+[
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\chunk.c.obj", "src\\chunk.c"],
+  "file": "src\\chunk.c"
+},
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\compiler.c.obj", "src\\compiler.c"],
+  "file": "src\\compiler.c"
+},
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\debug.c.obj", "src\\debug.c"],
+  "file": "src\\debug.c"
+},
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\main.c.obj", "src\\main.c"],
+  "file": "src\\main.c"
+},
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\memory.c.obj", "src\\memory.c"],
+  "file": "src\\memory.c"
+},
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\scanner.c.obj", "src\\scanner.c"],
+  "file": "src\\scanner.c"
+},
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\value.c.obj", "src\\value.c"],
+  "file": "src\\value.c"
+},
+{
+  "directory": "c:\\Users\\xj\\cpp\\lox\\lox",
+  "arguments": ["C:\\msys2\\mingw64\\bin\\x86_64-w64-mingw32-gcc.exe", "-c", "-m64", "-g", "-O0", "-o", "build\\.objs\\clox\\mingw\\x86_64\\debug\\src\\vm.c.obj", "src\\vm.c"],
+  "file": "src\\vm.c"
+}]
