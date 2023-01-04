@@ -9,8 +9,9 @@
 
 static void repl() {
     char line[1024];
+    printf("Welcome to Lox (version 0.1.0)\nCopyright (C) 2022, Zhenyu Lu\n\n");
     for (;;) {
-        printf("> ");
+        printf("?> ");
 
         if (!fgets(line, sizeof(line), stdin)) {
             printf("\n");
